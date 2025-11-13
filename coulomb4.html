@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quartic Polynomials: Summing Forces via Logarithmic Derivatives</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        h1, h2, h3 { color: #333; }
+        .equation { text-align: center; margin: 20px 0; }
+        ul { margin-left: 20px; }
+        svg { border: 1px solid #ccc; margin: 10px 0; display: block; margin-left: auto; margin-right: auto; }
+        .figure-caption { text-align: center; font-style: italic; margin-top: -10px; }
+    </style>
+</head>
+<body>
+    <h1>Summing Forces: Logarithmic Derivatives and Polynomial Terms</h1>
+    <p>In the Coulomb analogy, each root \( \lambda_i \) acts as a "charge," and the pairwise force on a test point \( z \) (not a root) from all roots is the sum \( \sum_i \frac{1}{z - \lambda_i} \). This total "field" relates directly to the polynomial and its first derivative—no extra factors needed beyond the inherent scaling from the degree.</p>
+
+    <h2>Key Relation: Logarithmic Derivative</h2>
+    <p>For \( P(z) = \prod_i (z - \lambda_i) \) (monic quartic), the logarithmic derivative gives the exact sum of forces:</p>
+    <div class="equation">
+        $$ \frac{P'(z)}{P(z)} = \sum_i \frac{1}{z - \lambda_i} $$
+    </div>
+    <p>This is the total force from all roots at \( z \). At equilibrium for root \( \lambda_k \), the self-force singularity is excluded, and it balances the confining potential: \( \sum_{i \neq k} \frac{1}{\lambda_k - \lambda_i} = V'(\lambda_k) \) (e.g., \( V' = \lambda_k \) for harmonic).</p>
+    <p><em>No ESP coefficients as prefactors here</em>—the sum is direct. However, expanding \( P'(z)/P(z) \) via partial fractions or series involves ESP via Newton identities (e.g., residues tie to \( e_k \)).</p>
+
+    <h2>Incorporating Higher Derivatives: Full "Force Landscape"</h2>
+    <p>To "add up forces in the derivatives," consider the full electrostatic analogy in the complex plane: the potential is \( \log |P(z)| = \sum_i \log |z - \lambda_i| \), field \( \nabla \log |P| = \operatorname{Re}(P'/P) \) (real part for magnitude force).</p>
+    <p>Higher derivatives capture multi-body effects:</p>
+    <div class="equation">
+        $$ \frac{P''(z)}{P(z)} - \left( \frac{P'(z)}{P(z)} \right)^2 = - \sum_{i \neq j} \frac{1}{(z - \lambda_i)(z - \lambda_j)} $$
+    </div>
+    <p>This is the trace of the Hessian (second derivatives), summing pairwise "stiffnesses" \( \partial^2 / \partial z^2 \) of each log term. For quartic, explicit:</p>
+    <div class="equation">
+        $$ P(z) = z^4 - e_1 z^3 + e_2 z^2 - e_3 z + e_4, $$
+        $$ P'(z) = 4 z^3 - 3 e_1 z^2 + 2 e_2 z - e_3, $$
+        $$ P''(z) = 12 z^2 - 6 e_1 z + 2 e_2. $$
+    </div>
+    <p>Notice the factors (4,3,2,1 for P'; 12=4·3,6=3·2,2=2·1 for P'')—these are binomial/DSP coefficients from differentiating the power-sum relations, but <em>not</em> ESP directly as prefactors for the force sum. To express the total field in ESP, use the generating function or recurrence, but the sum \( P'/P \) already "includes" them implicitly.</p>
+
+    <h3>Equilibrium Condition with Factors</h3>
+    <p>At a root \( \lambda_k \), the force balance is limit as \( z \to \lambda_k \) of \( P'(z)/P(z) - 1/(z - \lambda_k) = \sum_{i \neq k} 1/(\lambda_k - \lambda_i) \), and by L'Hôpital, \( P''(\lambda_k)/P'(\lambda_k) = \) that sum. So higher derivatives enter the balance, with the degree factors (e.g., leading 4 in P') scaling the "strength."</p>
+    <p>If you mean weighting by ESP (e.g., force ~ e_k / dist^k for multipole), that's an approximation for far-field, but for exact sum, no—use the log derivative directly.</p>
+
+    <h2>Example: Symmetric Quartic</h2>
+    <p>Roots \( \pm 2, \pm 1 \) (\( e_1 = 0, e_2 = 6, e_3 = 0, e_4 = 4 \)). At z=0 (center):</p>
+    <div class="equation">
+        $$ P(0) = 4, \quad P'(0) = -e_3 = 0, \quad \frac{P'(0)}{P(0)} = 0 = \frac{1}{0-(-2)} + \frac{1}{0-2} + \frac{1}{0-(-1)} + \frac{1}{0-1} = \frac{1}{2} - \frac{1}{2} + 1 - 1 = 0 $$
+    </div>
+    <p>Balances to zero, as expected by symmetry. For P'': P''(0) = 2 e_2 = 12, and the pairwise Hessian sum matches after factors.</p>
+
+    <h2>Notes</h2>
+    <ul>
+        <li>ESP enter via coefficients of P, P', P'', but force sum \( \sum 1/(z - \lambda_i) = P'/P \) needs no extra multipliers.</li>
+        <li>For complex roots, the field is holomorphic (Cauchy-Riemann), summing vectorially in plane.</li>
+        <li>If adding "all forces" means total energy, it's \( \sum_{i<j} -\log|\lambda_i - \lambda_j| + \sum_i V(\lambda_i) \), with discriminant \( \prod_{i<j} |\lambda_i - \lambda_j|^2 = | \operatorname{Res}(P',P) | \) tying back to derivatives.</li>
+    </ul>
+    <p>Clarify if you mean a specific sum (e.g., over all roots or weighted by e_k), or share a polynomial for computation!</p>
+</body>
+</html>
