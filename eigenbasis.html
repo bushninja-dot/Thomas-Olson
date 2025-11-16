@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EigenDynamics — Intro &amp; Page Scaffold</title>
+  <meta name="description" content="Introductory scaffold for a three-part site: eigenvalue dynamics, determinant oscillations, and polynomial vs function derivatives." />
+  <link rel="stylesheet" href="website/src/styles/global.css">
+  <!-- <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#60a5fa;--glass:rgba(255,255,255,0.04)}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#071020 0%, #071827 60%);color:#e6eef8;line-height:1.5}
+    .wrap{max-width:1000px;margin:36px auto;padding:28px}
+    header{display:flex;gap:20px;align-items:center}
+    .logo{width:66px;height:66px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 8px 30px rgba(2,6,23,0.8)}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin-top:8px}
+    nav{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    a.btn{background:var(--glass);padding:8px 12px;border-radius:10px;color:var(--accent);text-decoration:none;border:1px solid rgba(96,165,250,0.12)}
+    main{margin-top:22px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px 0}
+    .summary{color:var(--muted);font-size:0.95rem}
+    .actions{margin-top:12px;display:flex;gap:8px}
+    button.primary{background:linear-gradient(90deg,var(--accent),#7c3aed);border:none;padding:8px 12px;border-radius:10px;color:#051029;cursor:pointer}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:10px}
+    footer{margin-top:30px;color:var(--muted);font-size:0.9rem}
+    pre{background:#021026;padding:12px;border-radius:8px;overflow:auto;color:#dbeafe}
+    .note{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;border-left:3px solid rgba(96,165,250,0.18);color:var(--muted)}
+    @media (max-width:780px){.grid{grid-template-columns:1fr}}
+  </style>< -->
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">ED</div>
+      <div>
+        <h1>EigenDynamics — Intro &amp; Page Scaffold</h1>
+        <p class="lead">A compact exploratory site for eigenvalue-driven time evolution, determinant oscillations, and the difference between function-space and polynomial-space derivatives.</p>
+      </div>
+    </header>
+
+    <nav>
+      <a class="btn" href="#intro">Intro</a>
+      <a class="btn" href="#part1">Part I — Eigenvalue Dynamics</a>
+      <a class="btn" href="#part2">Part II — Det-Oscillations</a>
+      <a class="btn" href="#part3">Part III — Derivatives</a>
+    </nav>
+
+    <main>
+      <section id="intro" class="card" style="margin-top:18px">
+        <h2>Introduction</h2>
+        <p class="summary">This project explores two dual spaces that govern linear dynamical systems: the <strong>function space</strong> of eigenfunctions and the <strong>spectrum</strong> of eigenvalues. We'll develop intuition, algebraic formulas, and visualizations for how matrices evolve in time, how determinants behave when eigenvalues lie on the unit circle, and how differentiating either eigenfunctions or characteristic polynomials produces fundamentally different effects.</p>
+        <div class="note" style="margin-top:12px">
+          <strong>Goal:</strong> produce a three-part walkthrough (and code-ready web sections) that you can publish as a demonstration of your ideas, with interactive visuals added later.
+        </div>
+      </section>
+
+      <section id="parts" style="margin-top:18px">
+        <div class="grid">
+          <div class="card" id="part1">
+            <h3>Part I — Eigenvalue-Driven Dynamics</h3>
+            <p class="summary">Diagonalization, companion matrices, and time evolution: how <code>C^t = V D^t V^{-1}</code> drives modal behaviour. Stability regimes, periodic vs quasiperiodic motion, and links to unitary/orthogonal groups.</p>
+            <div class="actions">
+              <button class="primary" onclick="expand('p1')">Expand this part</button>
+              <button class="ghost" onclick="request('I want Part I as HTML content')">Request from assistant</button>
+            </div>
+            <div id="p1" style="margin-top:12px;display:none"><pre>// Placeholder: full Part I will include formulas, examples, and an optional WebGL/SVG animation.
+C^t x0 = V D^t V^{-1} x0
+// Discuss eigenvalues on unit circle vs inside/outside
+</pre></div>
+          </div>
+
+          <div class="card" id="part2">
+            <h3>Part II — Det-Oscillations &amp; Spectral Geometry</h3>
+            <p class="summary">Why the determinant oscillates when eigenvalues have modulus 1, geometric interpretation as rotating volume, and connections to quantum unitary evolution. Includes formulas and examples.</p>
+            <div class="actions">
+              <button class="primary" onclick="expand('p2')">Expand this part</button>
+              <button class="ghost" onclick="request('I want Part II as HTML content')">Request from assistant</button>
+            </div>
+            <div id="p2" style="margin-top:12px;display:none"><pre>// Placeholder: show det(C^t) = (det C)^t and example with phases
+</pre></div>
+          </div>
+
+          <div class="card" id="part3" style="grid-column:1 / -1">
+            <h3>Part III — Polynomial vs Function Derivatives</h3>
+            <p class="summary">Clear distinction between φ'(x) (function derivatives) vs P'(λ) (polynomial derivatives). Companion-matrix relationships, Gauss–Lucas root movement, and coefficient transformations.</p>
+            <div class="actions">
+              <button class="primary" onclick="expand('p3')">Expand this part</button>
+              <button class="ghost" onclick="request('I want Part III as HTML content')">Request from assistant</button>
+            </div>
+            <div id="p3" style="margin-top:12px;display:none"><pre>// Placeholder: illustrate P(λ) -> P'(λ) and companion matrix mapping
+</pre></div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:18px" class="card">
+        <h3>How to proceed</h3>
+        <p class="summary">Pick a part above and I'll write that section out as complete HTML (text, equations, code examples, and optional visuals). Each part will be self-contained so you can publish them one at a time.</p>
+        <div style="margin-top:12px;display:flex;gap:10px">
+          <button class="primary" onclick="assistantRequest('Part I')">Write Part I now</button>
+          <button class="primary" onclick="assistantRequest('Part II')">Write Part II now</button>
+          <button class="primary" onclick="assistantRequest('Part III')">Write Part III now</button>
+        </div>
+        <p style="margin-top:10px;color:var(--muted)">Note: the "Request" buttons are placeholders to remind you which part to ask me for. When you're ready, tell me which part and I'll deliver the HTML for that section.</p>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>Built for exploration — expand with interactive visuals, companion matrices, and your complex-time ideas.</div>
+    </footer>
+  </div>
+
+  <script>
+    function expand(id){
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+    function request(msg){
+      alert('Tip: tell the assistant exactly what you want. Example:\n"Please produce the HTML content for: '+msg+'"');
+    }
+    function assistantRequest(part){
+      alert('To the assistant: please produce the full HTML for '+part+".\n(Then paste it into this scaffold or replace this section.)");
+    }
+  </script>
+</body>
+</html>
